@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Update Log</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #fff;
+      opacity: 1; /* Firefox */
+    }
+    
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: #03080e;
+        /*background: url('./bg3.jpg') no-repeat 49% 76%;*/
+        /*background-size: cover;*/
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: poppins;
+        position: relative;
+    }
+    
+    .circles {
+        width: 400px;
+        height: 400px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    
+    
+    .circle1 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(45deg, #ff0099, #7a0ed6);
+        border-radius: 50%;
+        position: absolute;
+        top: -100px;
+        right: -155px;
+    }
+    
+    .circle2 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(45deg, #ff237b, #f64838);
+        border-radius: 50%;
+        position: absolute;
+        bottom: -90px;
+        left: -70px;
+    }
+    
+    .update-log-numeric-tracker-form {
+        display: flex;
+        flex-direction: column;
+        color: #fff;
+        padding: 40px 26px;
+        width: 300px;
+        /*height: 300px;*/
+        background-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+    }
+    
+    
+    .update-log-numeric-tracker-form {
+        color: #fff;
+        font-size: 25px;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+    
+    .update-log-numeric-tracker-form p {
+        color: #fff;
+        margin-top: 0;
+        margin-bottom: 26px;
+    }
+    
+    
+    .update-log-numeric-tracker-form input {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        padding: 14px 16px;
+        margin-bottom: 30px;
+    }
+    
+    .update-log-numeric-tracker-form input:focus {
+        outline: none;
+        border-color: #fff;
+    }
+    
+    .update-log-numeric-tracker-form button {
+        background: linear-gradient(45deg, #ff0d45, #ff01eb);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 14px 16px;
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    </style>
+    </head>
+    <body>
+        <div class="circles">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </div>
+        <form action="/{{username}}/{{log_info['log_id']}}/update_log" method="POST" id="update-log-numeric-tracker" class="update-log-numeric-tracker-form" >
+                <h1>Update Log</h1>
+                <p>{{message}}</p>
+                <label>Value: </label>
+                <input name="val" id="val_num" value="{{log_info['value']}}" required />
+                    <label>Note: </label>
+                    <input type="text" name="note" value="{{log_info['note']}}" />
+                <label>Select date and time:</label>
+                <input type="datetime-local" name="timestamp" value="{{log_info['TimeStamp']}}" required>
+                <button type="submit" >Update Log</button>
+        </form>
+    </body>
+</html>

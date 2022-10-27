@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>{{tracker_info["tracker_name"]}} Tracker</title>
+        <style>
+        #stats {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          #stats td, #stats th {
+            border: 1px solid #ddd;
+            padding: 8px;
+          }
+          
+          #stats tr:nth-child(even){background-color: #f2f2f2;}
+          #stats tr:nth-child(odd){background-color: white;}
+          
+          #stats tr:hover {background-color: #ddd;}
+          
+          #stats th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+          }
+
+          #stats tr {
+            color: black;
+          }
+          body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://i.ibb.co/Hq9bdwY/1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    align-items: center;
+    align-content: center;
+    bottom: 0;
+}
+      .main button {
+        background: linear-gradient(45deg, #ff0d45, #ff01eb);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 14px 16px;
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .btn1 {
+        margin-right: 30px;
+      }
+      .nav {
+    background-color: #efefef;
+    height: 50px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 10px #000;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: top 0.15s ease-out, border-radius 0.15s ease-out;
+  }
+  
+  .nav.active {
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    border-radius: 8px 5px;
+  }
+  
+  .nav > ul {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    color: #222;
+    font-family: Montserrat, sans-serif;
+    text-decoration: none;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    display: block;
+  }
+  
+  .nav > ul > li {
+    float: right;
+    display: inline-block;
+  }
+  
+  .nav > ul > li > a {
+    color: #222;
+    font-family: Montserrat, sans-serif;
+    text-decoration: none;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    display: block;
+    text-shadow: 0 -1px #fff;
+    transition: background 0.15s ease;
+  }
+  
+  .nav > ul > li > a:hover {
+    background-color: #dfdfdf;
+  }
+  
+  .nav.active > ul > li > a:hover {
+    background-color: rgba(180, 180, 180, 0.7);
+  }
+        </style>
+    </head>
+    <body>
+      <div id="nav" class="nav">
+        <ul>
+          <li style="float: left;">Hello {{username}}!</li>
+          <li><a href="/">Logout</a></li>
+          <li><a href="/{{username}}/dashboard">Go Home</a></li>
+        </ul>
+      </div>
+      <div class="main">
+      <center>
+        <h1>{{tracker_info["tracker_name"]}}</h1>
+        <p>{{tracker_info["description"]}}</p>
+        {% if plot_graph == 'False' %}
+        <h3>Input more values to see trendlines</h3>
+        {% else %}
+        <h3>{{tracker_info["tracker_name"]}} vs Time</h3>
+        <img src="{{url_for('static',filename = 'graph.png')}}" alt="{{tracker_info['tracker_name']}} vs Time">
+        {% endif %}
+        <p><button onclick="window.location.href='/{{username}}/{{tracker_info['tracker_id']}}/{{tracker_info['tracker_name']}}/log'" >Log Values</button></p>
+        <p><button onclick="window.location.href='/{{username}}/{{tracker_info['tracker_id']}}/delete'" class="btn1">Delete Tracker</button> <button onclick="window.location.href='/{{username}}/{{tracker_info['tracker_id']}}/update'">Update Tracker</button></p>
+        <h2>Recent Stats</h2>
+        {% if recent_logs|length > 0 %}
+        <table id="stats">
+        <tr>
+            <th>Value</th>
+            <th>Note</th>
+            <th>TimeStamp</th>
+            <th>Actions</th>
+            </tr>
+            {% for row in recent_logs %}
+                <tr>
+                    <td>{{row['value']}}</td>
+                    <td>{{row['note']}}</td>
+                    <td>{{row['TimeStamp']}}</td>
+                    <td><a href="/{{username}}/{{row['log_id']}}/delete_log">Delete</a> <a href="/{{username}}/{{row['log_id']}}/update_log">Update</a></td>
+                  </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No stats at the moment.</p>
+        {% endif %}
+        <p><button onclick="window.location.href='/{{username}}/{{tracker_info['tracker_id']}}/all_stats'" >See all stats</button></p>
+      </center>
+    </div>
+    </body>
+</html>

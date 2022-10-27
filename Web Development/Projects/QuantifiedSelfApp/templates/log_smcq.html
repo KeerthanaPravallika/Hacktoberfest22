@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Log Tracker</title>
+        <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #03080e;
+    /*background: url('./bg3.jpg') no-repeat 49% 76%;*/
+    /*background-size: cover;*/
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: poppins;
+    position: relative;
+}
+
+.circles {
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+.circle1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, #ff0099, #7a0ed6);
+    border-radius: 50%;
+    position: absolute;
+    top: -100px;
+    right: -155px;
+}
+
+.circle2 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #ff237b, #f64838);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -90px;
+    left: -70px;
+}
+
+.log-mcq-tracker-form {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    padding: 40px 26px;
+    width: 300px;
+    /*height: 300px;*/
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+
+.log-mcq-tracker-form h1 {
+    color: #fff;
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.log-mcq-tracker-form p {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 26px;
+}
+
+
+.log-mcq-tracker-form input {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 30px;
+}
+
+.log-mcq-tracker-form input:focus {
+    outline: none;
+    border-color: #fff;
+}
+
+.log-mcq-tracker-form button {
+    background: linear-gradient(45deg, #ff0d45, #ff01eb);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* section */
+section {
+  width: 50%;
+  min-height: inherit;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  position: relative;
+}
+
+
+.light {
+  --primary: hsl(250, 100%, 44%);
+  --other: hsl(0, 0%, 14%);
+
+  background: hsl(0, 0%, 98%);
+}
+
+.dark {
+  --primary: hsl(1, 100%, 68%);
+  --other: hsl(0, 0%, 90%);
+  background: rgba(0, 0, 0, 0);
+}
+
+
+/* h1 */
+h1 {
+  color: var(--other);
+  padding: 8px 4px;
+  border-bottom: 2px solid var(--other);
+}
+
+
+/* label */
+.dark label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  margin: 12px 0;
+
+  cursor: pointer;
+  position: relative;
+}
+
+
+/* input */
+.dark input {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+
+/* .design */
+.design {
+  width: 16px;
+  height: 16px;
+
+  border: 1px solid var(--other);
+  border-radius: 100%;
+  margin-right: 16px;
+
+  position: relative;
+}
+
+.design::before,
+.design::after {
+  content: "";
+  display: block;
+
+  width: inherit;
+  height: inherit;
+
+  border-radius: inherit;
+
+  position: absolute;
+  transform: scale(0);
+  transform-origin: center center;
+}
+
+.design:before {
+  background: var(--other);
+  opacity: 0;
+  transition: .3s;
+}
+
+.design::after {
+  background: var(--primary);
+  opacity: .4;
+  transition: .6s;
+}
+
+
+/* .text */
+.text {
+  color: var(--other);
+  font-weight: bold;
+}
+
+
+/* checked state */
+.dark input:checked+.design::before {
+  opacity: 1;
+  transform: scale(.6);
+}
+
+
+/* other states */
+.dark input:hover+.design,
+.dark input:focus+.design {
+  border: 1px solid var(--primary);
+}
+
+.dark input:hover+.design:before,
+.dark input:focus+.design:before {
+  background: var(--primary);
+}
+
+.dark input:hover~.text {
+  color: var(--primary);
+}
+
+.dark input:focus+.design::after,
+.dark input:active+.design::after {
+  opacity: .1;
+  transform: scale(2.6);
+}
+
+
+        </style>
+    </head>
+    <body>
+        <div class="circles">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </div>
+        <form action="/{{username}}/{{tracker_info['tracker_id']}}/{{tracker_info['tracker_name']}}/log" method="POST" id="log-mcq-tracker" class="log-mcq-tracker-form" >
+            <h1>{{tracker_info['tracker_name']}} Log</h1>
+            <section class="dark" style="backdrop-filter: blur(8px);">    
+            <p>Select value:</p>
+                {% for op in options %}
+                <label>
+                    <input type="radio" name="val" value="{{op}}" required>
+                    <span class="design"></span>
+                    <span class="text">{{op}}</span>
+                  </label>
+                {% endfor %}
+            </section>
+                    <label>Note: </label>
+                    <input type="text" name="note" />
+                <label>Select date and time:</label>
+                <input type="datetime-local" name="timestamp" required>
+                <button type="submit" >Log</button>
+            </form>
+    </body>
+</html>
