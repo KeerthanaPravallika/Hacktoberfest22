@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Add Tracker</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="../static/css/add_tracker.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #03080e;
+    /*background: url('./bg3.jpg') no-repeat 49% 76%;*/
+    /*background-size: cover;*/
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: poppins;
+    position: relative;
+}
+
+.circles {
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+.circle1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, #ff0099, #7a0ed6);
+    border-radius: 50%;
+    position: absolute;
+    top: -100px;
+    right: -155px;
+}
+
+.circle2 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #ff237b, #f64838);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -90px;
+    left: -70px;
+}
+
+.add-tracker-form {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    padding: 40px 26px;
+    width: 300px;
+    /*height: 300px;*/
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+
+.add-tracker-form h1 {
+    color: #fff;
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.add-tracker-form p {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 26px;
+}
+
+
+.add-tracker-form input {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 30px;
+}
+
+.add-tracker-form input:focus {
+    outline: none;
+    border-color: #fff;
+}
+
+.add-tracker-form button {
+    background: linear-gradient(45deg, #ff0d45, #ff01eb);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#ForReal {
+    display: none;
+ }
+ #Options {
+    display: none;
+ }
+ select {
+   -webkit-appearance:none;
+   -moz-appearance:none;
+   -ms-appearance:none;
+   appearance:none;
+   outline:0;
+   box-shadow:none;
+   border:0!important;
+   background: #5c6664;
+   background-image: none;
+   flex: 1;
+   padding: 0 .5em;
+   color:#fff;
+   cursor:pointer;
+   font-size: 1em;
+   font-family: 'Open Sans', sans-serif;
+}
+select::-ms-expand {
+   display: none;
+}
+.select {
+   position: relative;
+   display: flex;
+   width: 15em;
+   height: 3em;
+   line-height: 3;
+   background: #5c6664;
+   overflow: hidden;
+   border-radius: .25em;
+   margin-bottom: 40px;
+}
+.select::after {
+   content: '\25BC';
+   position: absolute;
+   top: 0;
+   right: 0;
+   padding: 0 1em;
+   background: #2b2e2e;
+   cursor:pointer;
+   pointer-events:none;
+   transition:.25s all ease;
+}
+.select:hover::after {
+   color: #23b499;
+}   
+        </style>
+    </head>
+    <body>
+        <div class="circles">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </div>
+        <form action="/{{username}}/tracker/add" method="POST" id="add-tracker" class="add-tracker-form">
+                <h1>Add Tracker</h1>
+                <p>{{message}}</p>
+                <label>Tracker Name: </label>
+                <input type="text" name="tname" required />
+                    <label for="ttype">Tracker Type</label>
+                    <div class="select">
+                    <select name="ttype" onchange="displayDivs(this)" >
+                      <option value="none" selected disabled hidden>Select an option</option>
+                      <option value="Real">Numeric</option>
+                      <option value="SMCQ">Single Select</option>
+                    </select>
+                </div>
+                <div id="ForReal">
+                    <label>Maximum Possible Value: </label>
+                    <input type="text" name="max_val" />
+                    <label>Minimum Possible Value: </label>
+                    <input type="text" name="min_val" />
+                </div>
+                <div id="Options">
+                    <label>Enter options(Separated by commas): </label>
+                    <input type="text" name="options" />
+                </div>
+                <label>Tracker Description: </label>
+                <input type="text" name="tdesc" />
+                <button type="submit" >Add</button>
+        </form>
+    </body>
+    <script>
+        function displayDivs(elementValue) {
+            displayForReal('ForReal', elementValue);
+            displayOptions('Options', elementValue);
+        }
+        function displayForReal(id, elementValue) {
+            document.getElementById(id).style.display = elementValue.value == "Real" ? 'block' : 'none';
+        }
+        function displayOptions(id, elementValue) {
+            document.getElementById(id).style.display = elementValue.value == "SMCQ" ? 'block' : 'none';
+        }
+     </script>
+</html>

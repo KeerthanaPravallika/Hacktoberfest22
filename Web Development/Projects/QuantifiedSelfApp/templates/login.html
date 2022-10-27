@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>User Login</title>
+        <link rel="stylesheet" href="../static/css/login.css">
+    </head>
+    <body>
+        <div class="circles">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </div>
+        <form action="/login" method="POST" id="user-login" class="login_form">
+                <h1>User Login</h1>
+                <p>{{message}}</p>
+                <input type="text" name="username" placeholder="Username" required />
+                <input type="password" name="password" placeholder="Password"/>
+                <button type="submit" >Login</button>
+                <p style="align: center; padding-top: 20px;">New User? <button onclick="window.location.href='/signup'">Sign Up</button></p>
+        </form>
+    </body>
+</html>
