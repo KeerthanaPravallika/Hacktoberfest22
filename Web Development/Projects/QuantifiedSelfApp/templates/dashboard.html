@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="../static/css/dashboard.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+        <style>
+        #tracker-list {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          #tracker-list td, #tracker-list th {
+            border: 1px solid #ddd;
+            padding: 8px;
+          }
+          
+          #tracker-list tr:nth-child(even){background-color: #f2f2f2;}
+          #tracker-list tr:nth-child(odd){background-color: white;}
+          
+          #tracker-list tr:hover {background-color: #ddd;}
+          
+          #tracker-list th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+          }
+
+          #tracker-list tr {
+            color: black;
+          }
+          .center {
+            margin: auto;
+            width: 100%;
+          }
+        </style>
+    </head>
+    <body>
+      
+      <div id="nav" class="nav">
+        <ul>
+          <li style="float: left;">Hello {{username}}!</li>
+          <li><a href="/">Logout</a></li>
+          <li><a href="/{{username}}/update">Update Profile</a></li>
+        </ul>
+      </div>
+      <div class="main">
+      <div class="center">
+        <center>
+        <h3>Dashboard - Track your health</h3>
+        <h1><p>Tracker List <button onclick="window.location.href='/{{username}}/tracker/add'" class="btn2">Add Tracker</button></p></h1>
+      </center>
+      </div>
+        {% if trackers|length > 0 %}
+        <table id="tracker-list">
+          <tr>
+          <th>Tracker name</th>
+          <th>Last Value</th>
+          <th>Last Reviewed on</th>
+          <th>Actions</th>
+          </tr>
+            {% for row in trackers %} {% for l in last_log %}
+            {% if row["tracker_name"] == l[1] %}
+                <tr>
+                    <td><a href="/{{username}}/{{row['tracker_id']}}/{{row['tracker_name']}}">{{row['tracker_name']}}</a></td>
+                    <td>{{l[0]["value"]}}</td>
+                    <td>{{l[0]["TimeStamp"]}}</td>
+                    <td><a href="/{{username}}/{{row['tracker_id']}}/delete">Delete</a> <a href="/{{username}}/{{row['tracker_id']}}/update">Update</a></td>
+                  </tr>
+            {% endif %}
+            {% endfor %} {% endfor %}
+          </table>
+        {% else %}
+            <p>No trackers at the moment.</p>
+        {% endif %}
+        <div class="end-buttons">
+          <center>
+        <button onclick="window.location.href='/{{username}}/update'" class="btn1">Update Profile</button>
+        <button onclick="window.location.href='/{{username}}/delete'">Delete Profile</button>
+      </center>
+      </div>
+      </div>
+        <script type="text/javascript" src="../static/js/dashboard.js"></script>
+    </body>
+</html>

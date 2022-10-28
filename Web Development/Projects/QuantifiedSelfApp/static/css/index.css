@@ -1,0 +1,375 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+
+html, body, .container {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.nav {
+  background-color: #efefef;
+  height: 50px;
+  box-sizing: border-box;
+  box-shadow: 0 5px 10px #000;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: top 0.15s ease-out, border-radius 0.15s ease-out;
+}
+
+.nav.active {
+  background-color: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  border-radius: 8px 5px;
+}
+
+.nav > ul {
+  width: 100%;
+  padding: 0 20px;
+  margin: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+.nav > ul > li {
+  float: left;
+  display: inline-block;
+}
+
+.nav > ul > li > a {
+  color: #222;
+  font-family: Montserrat, sans-serif;
+  text-decoration: none;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  display: block;
+  text-shadow: 0 -1px #fff;
+  transition: background 0.15s ease;
+}
+
+.nav > ul > li > a:hover {
+  background-color: #dfdfdf;
+}
+
+.nav.active > ul > li > a:hover {
+  background-color: rgba(180, 180, 180, 0.7);
+}
+
+.bg {
+  width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg > div {
+  color: white;
+  font-family: Montserrat, sans-serif;
+  text-align: center;
+  width: 100%;
+  padding: 30px;
+  text-shadow: 0 -1px #222;
+}
+
+#home {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://i.ibb.co/Hq9bdwY/1.png);
+}
+
+#about {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://i.ibb.co/Fs5zJ1B/2.png);
+}
+
+#services {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://i.ibb.co/1JDcMWy/3.png);
+}
+
+#contact {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://i.ibb.co/99qw72f/4.png);
+}
+
+.newsletter {
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  background-image: linear-gradient(#002db5, #203be8);
+  height: 120px;
+  box-sizing: border-box;
+  padding: 0 50px;
+  box-shadow: 0 0 30px 10px #000;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+}
+
+.newsletter > p {
+  width: 100%;
+  margin: 0;
+}
+
+.newsletter > div {
+  margin-top: 15px;
+}
+
+.newsletter > div > input {
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  background-color: #8597ff;
+  width: 200px;
+  border: none;
+  padding: 10px;
+  transition: background-color 0.15s, color 0.15s; 
+}
+
+.newsletter > div > input:focus {
+  color: #000;
+  background-color: #fff;
+}
+
+.newsletter > div > button {
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  background-color: #000599;
+  border: none;
+  padding: 10px 20px;
+  transition: background-color 0.15s;
+}
+
+.newsletter > div > button:hover {
+  background-color: #000470;
+  cursor: pointer;
+}
+
+.newsletter > div > button:active {
+  background-color: #0016a8;
+}
+
+.footer {
+  font-family: Montserrat, sans-serif;
+  background-color: #efefef;
+  width: 100%;
+  height: 300px;
+  padding: 30px;
+  display: flex;
+  align-items: flex-end;
+  align-content: flex-end;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+
+
+.home-buttons button {
+  background: linear-gradient(45deg, red, red);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/*Cards stuff in description*/
+
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 30px auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card .card_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+}
+
+.card .card_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  object-fit: cover;
+}
+
+.card .card_title {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: -80px;
+  height: 40px;
+}
+
+.card:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+
+.title-white {
+  color: white;
+}
+
+.title-black {
+  color: black;
+}
+
+@media all and (max-width: 500px) {
+  .card-list {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
+
+
+/*
+.card {
+  margin: 30px auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+  background-image: url('https://i.redd.it/b3esnz5ra34y.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+  transition: 0.4s;
+}
+*/
+
+/*Cards stuff in description*/
+
+/* Font */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+/* Design */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+.main{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.btn {
+  color: #ffffff;
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards_item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cards_item {
+    width: 33.3333%;
+  }
+}
+
+.card1 {
+  background-color: #FFC39E;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card1_content {
+  padding: 1rem;
+  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+}
+
+.card1_title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.card1_text {
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;    
+  font-weight: 400;
+}
+.made_by{
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 35px;
+  text-align: center;
+}

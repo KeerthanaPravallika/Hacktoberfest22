@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>All Statistics</title>
+        <style>
+            #stats {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          #stats td, #stats th {
+            border: 1px solid #ddd;
+            padding: 8px;
+          }
+          
+          #stats tr:nth-child(even){background-color: #f2f2f2;}
+          #stats tr:nth-child(odd){background-color: white;}
+          
+          #stats tr:hover {background-color: #ddd;}
+          
+          #stats th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+          }
+
+          #stats tr {
+            color: black;
+          }
+          body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://i.ibb.co/Hq9bdwY/1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    align-items: center;
+    align-content: center;
+    bottom: 0;
+}
+    button {
+        background: linear-gradient(45deg, #ff0d45, #ff01eb);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 14px 16px;
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+        </style>
+    </head>
+    <body>
+        <center>
+        <h2>All Records</h2>
+        {% if all_logs|length > 0 %}
+        <table id="stats">
+        <tr>
+            <th>Value</th>
+            <th>Note</th>
+            <th>TimeStamp</th>
+            <th>Actions</th>
+            </tr>
+            {% for row in all_logs %}
+                <tr>
+                    <td>{{row['value']}}</td>
+                    <td>{{row['note']}}</td>
+                    <td>{{row['TimeStamp']}}</td>
+                    <td><a href="/{{username}}/{{row['log_id']}}/delete_log">Delete</a> <a href="/{{username}}/{{row['log_id']}}/update_log">Update</a></td>
+                  </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No stats at the moment.</p>
+        {% endif %}
+        <p><button onclick="window.location.href='/{{username}}/dashboard'" >Go Home</button></p>
+    </center>
+    </body>
+</html>

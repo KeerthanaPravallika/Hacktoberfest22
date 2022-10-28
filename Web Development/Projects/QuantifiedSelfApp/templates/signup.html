@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>User SignUp</title>
+        <link rel="stylesheet" href="../static/css/signup.css">
+    </head>
+    <body>
+        <div class="circles">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </div>
+        <form action="/signup" method="POST" id="user-signup" class="signup_form">
+                <h1>User Sign Up</h1>
+                <p>{{message}}</p>
+                <input type="text" name="username" required placeholder="Username" />
+                <input type="password" name="password" placeholder="Password"/>
+                <button type="submit">Sign Up</button>
+                <p style="align: center; padding-top: 20px;">Already have an account? <button onclick="window.location.href='/login'">Login</button></p>
+        </form>
+    </body>
+</html>
